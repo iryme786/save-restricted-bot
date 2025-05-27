@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  restricted-bot:
+    build: .
+    container_name: restricted-message-bot
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_API_ID=${TELEGRAM_API_ID}
+      - TELEGRAM_API_HASH=${TELEGRAM_API_HASH}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_PHONE_NUMBER=${TELEGRAM_PHONE_NUMBER}
+    volumes:
+      - ./sessions:/app/sessions
+    env_file:
+      - .env
